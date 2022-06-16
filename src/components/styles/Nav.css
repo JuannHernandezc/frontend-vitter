@@ -1,0 +1,138 @@
+:root {
+    --main-color: rgba(97, 183, 242, 1);
+}
+
+.header {
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-responsive {
+    display: flex;
+    width: 100%;
+}
+
+.container-responsive .iconBar {
+    border: 2px solid white;
+    border-radius: 1rem;
+    color: white;
+    font-size: 2rem;
+    margin: 1rem;
+    padding: .5rem 1rem;
+}
+
+.container-responsive .iconBar:hover {
+    background-color: rgba(255, 255, 255, 0.527);
+    border: 2px solid black;
+    color: black;
+    transition: .7s;
+}
+
+.nav {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.container-logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.nav ul li {
+    text-align: center;
+}
+
+.item-menu {
+    color: white;
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 1.5rem;
+    text-decoration: none;
+    box-shadow: 1px 1px 1px white;
+}
+
+.home {
+    border-top: 1px solid white;
+}
+
+.item-menu:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: black;
+    transition: .7s;
+}
+
+.nav-normal {
+    display: flex;
+    width: 100%;
+}
+
+.container-logo-normal{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+.container-logo-normal img{
+    padding: 1rem;
+    width: 100px;
+}
+
+.container-items{
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    width: 80%;
+}
+
+.container-items ul{
+    display: flex;
+    padding: 1rem;
+    list-style-type: none;
+}
+
+.container-items li{
+    padding: 1rem;
+}
+
+.item-menu-normal{
+    border-radius: 1.5rem;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: .5rem 2rem;
+    text-decoration: none;
+}
+
+.item-menu-normal:hover{
+    background-color: rgba(255, 255, 255, 0.6);
+    color: black;
+    transition: .7s;
+}
+
+@media screen and (min-width: 767px) {
+    .container-responsive {
+        display: none;
+    }
+    .nav {
+        display: none;
+    }
+}
+@media screen and (max-width: 767px) {
+    .nav-normal {
+        display: none;
+    }
+}
