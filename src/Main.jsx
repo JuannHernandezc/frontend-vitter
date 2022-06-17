@@ -19,6 +19,7 @@ export const Main = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/terms" element={<h1>Terminos y condiciones</h1>}/>
             </Routes>
         </BrowserRouter>
     )

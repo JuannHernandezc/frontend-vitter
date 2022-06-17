@@ -1,0 +1,27 @@
+.footer{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.footer img{
+    width: 100px;
+    position: relative;
+    bottom: 40px;
+}
+.item-footer{
+    bottom: 20px;
+    color: black;
+    font-size: 1.4rem;
+    position: relative;
+    margin: 1rem;
+    text-decoration: none;
+}
+.item-footer:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    transition: .7s;
+}
+.footer p{
+    font-weight: bold;
+    font-size: 1.2;
+}
