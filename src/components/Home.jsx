@@ -1,10 +1,8 @@
-import { Navbar } from "./utils/Navbar";
 import { Footer } from "./utils/Footer";
 import "./styles/Home.css";
 export const Home = () => {
   return (
     <>
-      <Navbar />
       <main className="main">
         <div className="container-sections">
           <section className="main__section">
