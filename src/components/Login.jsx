@@ -3,7 +3,7 @@ import "./styles/Register.css";
 
 //Imports FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightToBracket, faClose } from "@fortawesome/free-solid-svg-icons";
 
 //Imports React Router DOM
 import { NavLink, useNavigate } from "react-router-dom";
@@ -61,9 +61,20 @@ export const Login = () => {
     }
     login();
   };
+  const closedPopUp = () => {
+    const popUp = document.getElementsByClassName('pop-up__login');
+    popUp[0].style.bottom = '125%';
+  }
   return (
     <>
       <main className="container-login">
+        <div className="container-close">
+          <FontAwesomeIcon
+            className="icon-close"
+            icon={faClose}
+            onClick={closedPopUp}
+          />
+        </div>
         <div className="container-icon">
           <FontAwesomeIcon className="icon" icon={faArrowRightToBracket} />
           <h1>Iniciar Sesión</h1>
@@ -86,11 +97,6 @@ export const Login = () => {
             ¿Olvidaste tu contraseña?
           </NavLink>
           <button className="btn-login">Iniciar Sesión</button>
-          <button className="btn-register">
-            <NavLink to="/register" className="btn-item-login">
-              Registrarse
-            </NavLink>
-          </button>
         </form>
       </main>
     </>

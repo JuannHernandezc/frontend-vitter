@@ -13,7 +13,11 @@ import { useState } from "react";
 //Imports Firebase
 import { auth } from "../../helpers/firebase";
 import { signOut } from "@firebase/auth";
+
+//Import components
 import { Register } from "../Register";
+import { Login } from "../Login";
+
 
 export const Navbar = ({ firebaseUser }) => {
   const [responsive, setResponsive] = useState(false);
@@ -29,12 +33,17 @@ export const Navbar = ({ firebaseUser }) => {
 
   const signOff = () => {
     signOut(auth).then(() => {
-      navigate("/login");
+      navigate("/");
     });
   };
 
   const openPopUp = () => {
     const popUp = document.getElementsByClassName('pop-up__register');
+    popUp[0].style.bottom = '0%';
+  }
+
+  const openPopUpLogin = () => {
+    const popUp = document.getElementsByClassName('pop-up__login');
     popUp[0].style.bottom = '0%';
   }
 
@@ -85,8 +94,11 @@ export const Navbar = ({ firebaseUser }) => {
                 <li>
                   <NavLink
                     className="item-menu"
-                    to="/login"
-                    onClick={handleResponsive}
+                    to="/"
+                    onClick={() => {
+                      handleResponsive();
+                      openPopUpLogin();
+                    }}
                   >
                     Iniciar Sesión
                   </NavLink>
@@ -145,8 +157,8 @@ export const Navbar = ({ firebaseUser }) => {
                     Registro
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink className="item-menu-normal" to="/login">
+                <li onClick={openPopUpLogin}>
+                  <NavLink className="item-menu-normal" to="/">
                     Iniciar Sesión
                   </NavLink>
                 </li>
@@ -179,6 +191,9 @@ export const Navbar = ({ firebaseUser }) => {
       </nav>
       <div className="pop-up__register">
         <Register />
+      </div>
+      <div className="pop-up__login">
+        <Login /> 
       </div>
     </header>
   );

@@ -2,6 +2,10 @@ import { Footer } from "./utils/Footer";
 import { Navbar } from "./utils/Navbar";
 import "./styles/Home.css";
 export const Home = ({ firebaseUser }) => {
+  const openPopUp = () => {
+    const popUp = document.getElementsByClassName('pop-up__register');
+    popUp[0].style.bottom = '0%';
+  }
   return (
     <>
       <main className="main">
@@ -21,7 +25,7 @@ export const Home = ({ firebaseUser }) => {
                 alt="Mapa de calor"
               />
             </div>
-            <button className="btn-create-map">Crear mapa</button>
+            <button onClick={openPopUp} className="btn-create-map">Crear mapa</button>
           </section>
         </div>
         <Footer />

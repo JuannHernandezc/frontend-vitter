@@ -93,30 +93,15 @@
     color: black;
 }
 
-.btn-item-login{
-    text-decoration: none;
-    color: white;
-}
-
-.btn-register:hover, .btn-login:hover{
-    cursor: pointer;
-    transform: scale(1.1,1.1);
-    transition: .7s;
-}
 
 .container-login{
     align-items: center;
-    background: linear-gradient(
-        0deg,
-        rgba(97, 183, 242, 0.8) 0%,
-        rgba(15, 71, 223, 0.6) 48%,
-        rgba(97, 183, 242, 0.8) 100%
-    );
     display: flex;
     flex-direction: column;
 }
 
 .error{
+    position: absolute;
     background-color: rgb(209, 97, 97);
     border-radius: 2rem;
     color: white;
@@ -125,5 +110,11 @@
     font-size: 1.6rem;
     padding: 1rem;
     text-align: center;
-    width: 50%;
+    width: 60%;
+}
+
+@media screen and (max-width: 425px){
+    .error{
+        font-size: 1rem;
+    }
 }
