@@ -1,0 +1,20 @@
+.container-search{
+    box-sizing: border-box;
+}
+.container-search{
+    align-items: center;
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    width: 100%;
+}
+.search-trending{
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    text-align: center;
+    width: 70%;
+}
+.icon-location{
+    margin-left: 1rem;
+    font-size: 1.6rem;
+}

@@ -18,8 +18,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./helpers/firebase.js";
 
 //Imports Components
-import { Navbar } from "./components/utils/Navbar"
+// import { Navbar } from "./components/utils/Navbar"
 import { TermsAndConditions } from "./components/TermsAndConditions"
+import { Trends } from "./components/Trends"
 
 export const Main = () => {
 
@@ -36,15 +37,16 @@ export const Main = () => {
     }, []); 
     return firebaseUser !== false ? (
         <BrowserRouter>
-        <Navbar firebaseUser={firebaseUser}/>
+        {/* <Navbar firebaseUser={firebaseUser}/> */}
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/register" element={<Register />} />
+                <Route path="/" element={<Home firebaseUser={firebaseUser}/>} />
+                {/* <Route path="/register" element={<Register />} /> */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/terms" element={<TermsAndConditions />}/>
                 <Route path="/rememberPassword" element={<h1>Olvidaste tu contraseña</h1>}/>
                 <Route path="/admin" element={<Admin />}/>
+                <Route path="/trends" element={<Trends />}/>
             </Routes>
         </BrowserRouter>
     ) : (

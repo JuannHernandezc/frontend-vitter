@@ -9,9 +9,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Nav.css";
 import { useState } from "react";
 
+
 //Imports Firebase
 import { auth } from "../../helpers/firebase";
 import { signOut } from "@firebase/auth";
+import { Register } from "../Register";
 
 export const Navbar = ({ firebaseUser }) => {
   const [responsive, setResponsive] = useState(false);
@@ -20,11 +22,7 @@ export const Navbar = ({ firebaseUser }) => {
   //Function that allow it had to responsive menu
 
   const handleResponsive = () => {
-    if (responsive) {
-      setResponsive(false);
-    } else {
-      setResponsive(true);
-    }
+    setResponsive(!responsive);
   };
 
   //Function that allow Logout
@@ -34,6 +32,11 @@ export const Navbar = ({ firebaseUser }) => {
       navigate("/login");
     });
   };
+
+  const openPopUp = () => {
+    const popUp = document.getElementsByClassName('pop-up__register');
+    popUp[0].style.bottom = '0%';
+  }
 
   return (
     <header className="header">
@@ -70,8 +73,11 @@ export const Navbar = ({ firebaseUser }) => {
                 <li>
                   <NavLink
                     className="item-menu"
-                    to="/register"
-                    onClick={handleResponsive}
+                    to="/"
+                    onClick={() => {
+                      handleResponsive();
+                      openPopUp();
+                    }}
                   >
                     Registro
                   </NavLink>
@@ -98,6 +104,11 @@ export const Navbar = ({ firebaseUser }) => {
             ) : (
               <>
                 <li>
+                  <NavLink className="item-menu" to="/trends">
+                    Tendencias
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink
                     className="item-menu"
                     to="/contact"
@@ -122,29 +133,53 @@ export const Navbar = ({ firebaseUser }) => {
         </div>
         <div className="container-items">
           <ul>
-            <li>
-              <NavLink className="item-menu-normal" to="/">
-                Inicio
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="item-menu-normal" to="/register">
-                Registro
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="item-menu-normal" to="/login">
-                Iniciar Sesión
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="item-menu-normal" to="/contact">
-                Contacto
-              </NavLink>
-            </li>
+            {firebaseUser === null ? (
+              <>
+                <li>
+                  <NavLink className="item-menu-normal" to="/">
+                    Inicio
+                  </NavLink>
+                </li>
+                <li onClick={openPopUp}>
+                  <NavLink  className="item-menu-normal" to="/">
+                    Registro
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="item-menu-normal" to="/login">
+                    Iniciar Sesión
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="item-menu-normal" to="/contact">
+                    Contacto
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink className="item-menu-normal" to="/trends">
+                    Tendencias
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="item-menu-normal"
+                    to="/contact"
+                    onClick={signOff}
+                  >
+                    Cerrar Sesión
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>
+      <div className="pop-up__register">
+        <Register />
+      </div>
     </header>
   );
 };

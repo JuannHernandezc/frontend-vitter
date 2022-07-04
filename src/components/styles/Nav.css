@@ -1,5 +1,5 @@
 :root {
-    --main-color: rgba(0, 121, 202, 0.9);
+    --main-color: rgba(0, 121, 202, 0.8);
 }
 
 .header {
@@ -121,6 +121,17 @@
     color: black;
     transition: .7s;
 }
+
+
+.pop-up__register{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(97, 117, 212, 0.9);
+    position: fixed;
+    z-index: 100;
+    bottom: 125%;
+}
+
 
 @media screen and (min-width: 767px) {
     .container-responsive {

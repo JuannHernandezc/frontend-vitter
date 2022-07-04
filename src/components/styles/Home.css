@@ -1,26 +1,24 @@
-.main{
-    background: url('https://res.cloudinary.com/danhzm8qb/image/upload/v1652195291/vitter/Robot_knbdn5.jpg');
+.main {
+    background: url('https://res.cloudinary.com/danhzm8qb/image/upload/v1656528213/vitter/gabriella-clare-marino-2PV6wdWVAMM-unsplash_dzvsub.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* height: calc(90vh - 78.3px); */
+    width: 100%;
+    min-height: 100vh;
+}
+
+.container-sections {
+    background: linear-gradient(0deg,
+            rgba(97, 183, 242, 0.8) 0%,
+            rgba(255, 255, 255, 0.6) 48%,
+            rgba(97, 183, 242, 0.8) 100%);
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
     width: 100%;
 }
 
-.container-sections{
-    background: linear-gradient(
-        0deg,
-        rgba(97, 183, 242, 0.8) 0%,
-        rgba(255, 255, 255, 0.6) 48%,
-        rgba(97, 183, 242, 0.8) 100%
-      );
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      width: 100%;
-}
-
-.main__section{
+.main__section {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -28,7 +26,7 @@
     margin-top: 4rem;
 }
 
-.main__section p{
+.main__section p {
     font-size: 3rem;
     font-weight: bold;
     line-height: 4.5rem;
@@ -36,12 +34,12 @@
     text-align: center;
 }
 
-.change-letter{
+.change-letter {
     font-size: 5rem;
     font-family: 'Allura', cursive;
 }
 
-.second-section{
+.second-section {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -49,13 +47,13 @@
     justify-content: center;
 }
 
-.second-section p{
+.second-section p {
     font-size: 2.3rem;
     padding: 1rem;
     text-align: center;
 }
 
-.second-section__picture{
+.second-section__picture {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -63,12 +61,12 @@
     width: 100%;
 }
 
-.second-section__picture img{
+.second-section__picture img {
     border-radius: 2rem;
     width: 300px;
 }
 
-.btn-create-map{
+.btn-create-map {
     background-color: black;
     border: none;
     border-radius: 2rem;
@@ -78,9 +76,9 @@
     padding: 1rem 4rem;
     margin-bottom: 6rem;
 }
-.btn-create-map:hover{
+
+.btn-create-map:hover {
     cursor: pointer;
-    transform: scale(1.1,1.1);
+    transform: scale(1.1, 1.1);
     transition: .7s;
 }
-

@@ -8,7 +8,7 @@ import { useState, useCallback } from "react";
 
 //Imports FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faClose } from "@fortawesome/free-solid-svg-icons";
 
 //Imports React Router DOM
 import { NavLink, useNavigate } from "react-router-dom";
@@ -110,6 +110,14 @@ export const Register = () => {
       window.scrollTo(0, 0);
       return;
     }
+    if(password.trim() !== confirmPassword.trim()){
+      setError("El campo contraseña y confirmar contraseña no son iguales");
+      setTimeout(() => {
+        setError(null);
+      }, 15000)
+      window.scrollTo(0, 0);
+      return;
+    }
     if (!phone.trim()) {
       setError("El campo Numero Celular no puede estar vacio");
       setTimeout(() => {
@@ -120,12 +128,18 @@ export const Register = () => {
     }
     register();
   };
+  const closedPopUp = () => {
+    const popUp = document.getElementsByClassName('pop-up__register');
+    popUp[0].style.bottom = '125%';
+  }
   return (
     <>
       <main className="container-main">
+        <div className="container-close">
+          <FontAwesomeIcon className="icon-close" icon={faClose} onClick={closedPopUp} />
+        </div>
         <div className="container-icon">
-          <FontAwesomeIcon className="icon" icon={faUser} />
-          <h1>Registro</h1>
+          <h1>REGISTRO</h1>
         </div>
         {error && <p className="error">{error}</p>}
         <form className="container-form" onSubmit={processData}>
@@ -170,11 +184,6 @@ export const Register = () => {
           </NavLink>
           <button className="btn-register" type="submit">
             Registrarse
-          </button>
-          <button className="btn-login">
-            <NavLink to="/login" className="btn-item">
-              Iniciar Sesión
-            </NavLink>
           </button>
         </form>
       </main>
