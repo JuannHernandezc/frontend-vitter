@@ -14,7 +14,7 @@ export const Trends = () => {
       setUser(auth.currentUser);
       console.log(auth.currentUser);
     } else {
-      navigate("/register");
+      navigate("/");
     }
   }, [navigate]);
 

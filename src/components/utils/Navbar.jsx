@@ -17,6 +17,7 @@ import { signOut } from "@firebase/auth";
 //Import components
 import { Register } from "../Register";
 import { Login } from "../Login";
+import { Contact } from "../Contact";
 
 
 export const Navbar = ({ firebaseUser }) => {
@@ -44,6 +45,11 @@ export const Navbar = ({ firebaseUser }) => {
 
   const openPopUpLogin = () => {
     const popUp = document.getElementsByClassName('pop-up__login');
+    popUp[0].style.bottom = '0%';
+  }
+
+  const openPopUpContact = () => {
+    const popUp = document.getElementsByClassName('pop-up__contact');
     popUp[0].style.bottom = '0%';
   }
 
@@ -106,8 +112,11 @@ export const Navbar = ({ firebaseUser }) => {
                 <li>
                   <NavLink
                     className="item-menu"
-                    to="/contact"
-                    onClick={handleResponsive}
+                    to="/"
+                    onClick={() => {
+                      handleResponsive();
+                      openPopUpContact();
+                    }}
                   >
                     Contacto
                   </NavLink>
@@ -163,7 +172,7 @@ export const Navbar = ({ firebaseUser }) => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="item-menu-normal" to="/contact">
+                  <NavLink onClick={openPopUpContact} className="item-menu-normal" to="/">
                     Contacto
                   </NavLink>
                 </li>
@@ -194,6 +203,9 @@ export const Navbar = ({ firebaseUser }) => {
       </div>
       <div className="pop-up__login">
         <Login /> 
+      </div>
+      <div className="pop-up__contact">
+        <Contact />
       </div>
     </header>
   );

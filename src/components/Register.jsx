@@ -8,7 +8,7 @@ import { useState, useCallback } from "react";
 
 //Imports FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 //Imports React Router DOM
 import { NavLink, useNavigate } from "react-router-dom";

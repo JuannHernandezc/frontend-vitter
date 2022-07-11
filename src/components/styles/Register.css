@@ -2,9 +2,12 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .container-close{
+    position: absolute;
+    top: 0;
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -70,7 +73,7 @@
     text-decoration: underline;
 }
 
-.btn-register,.btn-login{
+.btn-register,.btn-login,.btn-contact{
     border: none;
     border-radius: 1rem;
     font-size: 1.6rem;
@@ -78,7 +81,13 @@
     margin-bottom: 3rem;
 }
 
-.btn-register{
+.btn-register:hover, .btn-login:hover, .btn-contact:hover{
+    cursor: pointer ;
+    transform: scale(1.1,1.1);
+    transition: .5s;
+}
+
+.btn-register, .btn-contact{
     background-color: black;
     color: white;
 }
@@ -93,15 +102,16 @@
     color: black;
 }
 
-
 .container-login{
-    align-items: center;
     display: flex;
+    align-items: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .error{
     position: absolute;
+    top: 1rem;
     background-color: rgb(209, 97, 97);
     border-radius: 2rem;
     color: white;
@@ -111,6 +121,18 @@
     padding: 1rem;
     text-align: center;
     width: 60%;
+}
+
+.text-area{
+    width: 100%;
+    max-width: 600px;
+    height: 20vh;
+    margin: 3rem 0;
+    padding: 1rem;
+    resize: none;
+    font-size: 1.6rem;
+    border-radius: 1.5rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 425px){
