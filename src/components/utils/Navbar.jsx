@@ -18,6 +18,7 @@ import { signOut } from "@firebase/auth";
 import { Register } from "../Register";
 import { Login } from "../Login";
 import { Contact } from "../Contact";
+import { Reset } from "../Reset";
 
 
 export const Navbar = ({ firebaseUser }) => {
@@ -52,7 +53,6 @@ export const Navbar = ({ firebaseUser }) => {
     const popUp = document.getElementsByClassName('pop-up__contact');
     popUp[0].style.bottom = '0%';
   }
-
   return (
     <header className="header">
       <div className="container-responsive">
@@ -206,6 +206,9 @@ export const Navbar = ({ firebaseUser }) => {
       </div>
       <div className="pop-up__contact">
         <Contact />
+      </div>
+      <div className="pop-up__reset">
+        <Reset />
       </div>
     </header>
   );

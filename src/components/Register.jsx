@@ -110,11 +110,11 @@ export const Register = () => {
       window.scrollTo(0, 0);
       return;
     }
-    if(password.trim() !== confirmPassword.trim()){
+    if (password.trim() !== confirmPassword.trim()) {
       setError("El campo contraseña y confirmar contraseña no son iguales");
       setTimeout(() => {
         setError(null);
-      }, 15000)
+      }, 15000);
       window.scrollTo(0, 0);
       return;
     }
@@ -129,14 +129,18 @@ export const Register = () => {
     register();
   };
   const closedPopUp = () => {
-    const popUp = document.getElementsByClassName('pop-up__register');
-    popUp[0].style.bottom = '125%';
-  }
+    const popUp = document.getElementsByClassName("pop-up__register");
+    popUp[0].style.bottom = "125%";
+  };
   return (
     <>
       <main className="container-main">
         <div className="container-close">
-          <FontAwesomeIcon className="icon-close" icon={faClose} onClick={closedPopUp} />
+          <FontAwesomeIcon
+            className="icon-close"
+            icon={faClose}
+            onClick={closedPopUp}
+          />
         </div>
         <div className="container-icon">
           <h1>REGISTRO</h1>
@@ -179,11 +183,14 @@ export const Register = () => {
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
           />
-          <NavLink className="form-item" to="/terms">
-            Terminos y condiciones
-          </NavLink>
+          <span className="text-terms">
+          Al hacer clic en "Registrarte", aceptas nuestros &nbsp;
+            <NavLink className="form-item" to="/terms" target="_blank">
+               Terminos y condiciones
+            </NavLink>
+          </span>
           <button className="btn-register" type="submit">
-            Registrarse
+            Registrarte
           </button>
         </form>
       </main>

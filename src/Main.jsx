@@ -26,7 +26,6 @@ export const Main = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setFirebaseUser(user);
-        console.log(user);
       } else {
         setFirebaseUser(null);
       }
@@ -38,10 +37,6 @@ export const Main = () => {
         <Route path="/" element={<Home firebaseUser={firebaseUser} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/terms" element={<TermsAndConditions />} />
-        <Route
-          path="/rememberPassword"
-          element={<h1>Olvidaste tu contraseña</h1>}
-        />
         <Route path="/admin" element={<Admin />} />
         <Route path="/trends" element={<Trends />} />
       </Routes>

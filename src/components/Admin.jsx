@@ -10,7 +10,6 @@ export const Admin = () => {
   useEffect(() => {
     if(auth.currentUser){
       setUser(auth.currentUser);
-      console.log(auth.currentUser);
     }else{
       navigate('/');
     }

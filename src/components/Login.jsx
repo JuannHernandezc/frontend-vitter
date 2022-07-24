@@ -65,6 +65,12 @@ export const Login = () => {
     const popUp = document.getElementsByClassName('pop-up__login');
     popUp[0].style.bottom = '125%';
   }
+
+  const openPopUpContact = () => {
+    const popUp = document.getElementsByClassName('pop-up__reset');
+    popUp[0].style.bottom = '0%';
+  }
+
   return (
     <>
       <main className="container-login">
@@ -93,7 +99,10 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-          <NavLink className="form-item" to="/rememberPassword">
+          <NavLink className="form-item" onClick={() => {
+            openPopUpContact();
+            closedPopUp();
+          }} to="/">
             ¿Olvidaste tu contraseña?
           </NavLink>
           <button className="btn-login">Iniciar Sesión</button>

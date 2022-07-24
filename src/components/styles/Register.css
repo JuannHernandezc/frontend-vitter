@@ -60,8 +60,8 @@
     text-align: center;
     width: 100%;
 }
-
-.form-item{
+.form-item,
+.text-terms{
     color: white;
     font-size: 1.6rem;
     font-weight: bold;
@@ -73,7 +73,7 @@
     text-decoration: underline;
 }
 
-.btn-register,.btn-login,.btn-contact{
+.btn-register,.btn-login,.btn-contact,.btn-reset{
     border: none;
     border-radius: 1rem;
     font-size: 1.6rem;
@@ -92,9 +92,14 @@
     color: white;
 }
 
-.btn-login{
+.btn-login,
+.btn-reset{
     background-color: white;
     color: black;
+}
+
+.btn-reset{
+    margin-top: 2rem;
 }
 
 .btn-item{

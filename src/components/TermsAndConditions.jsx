@@ -1,12 +1,6 @@
 import React from "react";
 import "./styles/Terms.css";
-import { useNavigate } from "react-router-dom";
-
 export const TermsAndConditions = () => {
-    const navigate = useNavigate();
-    const handleSubmit = () => {
-        navigate("/");
-    }
   return (
     <div className="container-terms">
       <section>
@@ -239,7 +233,6 @@ export const TermsAndConditions = () => {
           damage of any nature.
         </p>
       </section>
-      <button className="btn-accept" onClick={handleSubmit}>Aceptar</button>
     </div>
   );
 };
