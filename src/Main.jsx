@@ -20,6 +20,7 @@ import { auth } from "./helpers/firebase.js";
 import { TermsAndConditions } from "./components/TermsAndConditions";
 import { Trends } from "./components/Trends";
 import { Search } from "./components/Search";
+import { HeatMap } from "./components/HeatMap";
 
 export const Main = () => {
   const [firebaseUser, setFirebaseUser] = useState(false);
@@ -41,6 +42,7 @@ export const Main = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/trends" element={<Trends />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/heatmap" element={<HeatMap />}></Route>
       </Routes>
     </BrowserRouter>
   ) : (
