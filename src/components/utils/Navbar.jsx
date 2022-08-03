@@ -125,6 +125,11 @@ export const Navbar = ({ firebaseUser }) => {
             ) : (
               <>
                 <li>
+                  <NavLink className="item-menu" to="/search">
+                    Busqueda Tweets
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink className="item-menu" to="/trends">
                     Tendencias
                   </NavLink>
@@ -179,6 +184,11 @@ export const Navbar = ({ firebaseUser }) => {
               </>
             ) : (
               <>
+                <li>
+                  <NavLink className="item-menu-normal" to="/search">
+                    Busqueda Tweets
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink className="item-menu-normal" to="/trends">
                     Tendencias

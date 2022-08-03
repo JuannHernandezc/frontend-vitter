@@ -19,6 +19,7 @@ import { auth } from "./helpers/firebase.js";
 // import { Navbar } from "./components/utils/Navbar"
 import { TermsAndConditions } from "./components/TermsAndConditions";
 import { Trends } from "./components/Trends";
+import { Search } from "./components/Search";
 
 export const Main = () => {
   const [firebaseUser, setFirebaseUser] = useState(false);
@@ -39,6 +40,7 @@ export const Main = () => {
         <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/trends" element={<Trends />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </BrowserRouter>
   ) : (

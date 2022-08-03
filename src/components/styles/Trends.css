@@ -18,3 +18,35 @@
     margin-left: 1rem;
     font-size: 1.6rem;
 }
+.trend-list{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+.item-list-trend{
+    margin: 2.5rem;
+    list-style-type: none;
+}
+.item-list-link{
+    width: 100%;
+    padding: 1rem 3rem;
+    background-color: rgba(0, 121, 202, 0.8);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 2rem;
+    color: white;
+    text-decoration: none;
+}
+.other-text{
+    color: black;
+}
+.item-list-link:hover{
+    background-color: rgba(4, 74, 120, 0.8);
+    transform: scale(1.1,1.1);
+    transition: .7s;
+    cursor: pointer ;
+}

@@ -11,7 +11,7 @@ import { Navbar } from "./utils/Navbar.jsx";
 export const Trends = () => {
   const [user, setUser] = useState(null);
   const [trends, setTrends] = useState([]);
-  const [woeid, setWoeid] = useState("1");
+  const [woeid, setWoeid] = useState("23424787");
   const navigate = useNavigate();
   useEffect(() => {
     if (auth.currentUser) {
@@ -41,12 +41,11 @@ export const Trends = () => {
 
   const listTrends = () => {
     return (
-      <ul>
+      <ul className="trend-list">
         {trends.map((trend, index) => {
           return (
-            <li key={index}>
-              <a href={trend.url}>{trend.name}</a>
-              {trend.tweet_volume && <span>{trend.tweet_volume}</span>}
+            <li key={index} className="item-list-trend">
+              <a className="item-list-link" href={trend.url}>{trend.name} -  {trend.tweet_volume && <span className="other-text">{trend.tweet_volume}</span>}</a>
             </li>
           );
         })}
@@ -62,7 +61,7 @@ export const Trends = () => {
             className="search-trending"
             onChange={(e) => setWoeid(e.target.value)}
           >
-            <option value="1">Worldwide</option>
+            <option value="1">Alrededor del mundo</option>
             <option value="23424787">Colombia</option>
             <option value="23424848">India</option>
             <option value="2459115">New York,US</option>
@@ -76,7 +75,10 @@ export const Trends = () => {
             onClick={handleLocation}
           />
         </section>
-        <section className="container">{listTrends()}</section>
+        <section className="container">
+          <h1>Tendencias</h1>
+          {listTrends()}
+        </section>
       </main>
     </>
   );
