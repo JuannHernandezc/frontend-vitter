@@ -2,10 +2,24 @@ import React from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 import "./styles/HeatMap.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+
 export const HeatMap = (locations) => {
   const position = [4.6126, -74.0705];
+  const closedPopUp = () => {
+    const popUp = document.getElementsByClassName("pop-up__heatmap");
+    popUp[0].style.bottom = "125%";
+  };
   return (
     <>
+      <div className="container-close">
+        <FontAwesomeIcon
+          className="icon-close"
+          icon={faClose}
+          onClick={closedPopUp}
+        />
+      </div>
       <Map center={position} zoom={5} scrollWheelZoom={false}>
         <HeatmapLayer
           points={locations.data}

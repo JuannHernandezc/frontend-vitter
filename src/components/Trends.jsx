@@ -9,6 +9,28 @@ import axios from "axios";
 import { Navbar } from "./utils/Navbar.jsx";
 
 export const Trends = () => {
+  const objectCity = [
+    {
+      country: "Colombia",
+      woeid: "23424787",
+    },
+    {
+      country: "Mundial",
+      woeid: "1",
+    },
+    {
+      country: "Chile",
+      woeid: "23424782",
+    },
+    {
+      country: "Ecuador",
+      woeid: "23424801",
+    },
+    {
+      country: "Argentina",
+      woeid: "23424747",
+    },
+  ];
   const [user, setUser] = useState(null);
   const [trends, setTrends] = useState([]);
   const [woeid, setWoeid] = useState("23424787");
@@ -30,53 +52,55 @@ export const Trends = () => {
         },
       })
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         setTrends(response.data[0].trends);
       })
       .catch((error) => console.log(error.message));
   };
-  const handleLocation = () => {
-    alert("handle location");
-  };
-
   const listTrends = () => {
     return (
       <ul className="trend-list">
         {trends.map((trend, index) => {
           return (
             <li key={index} className="item-list-trend">
-              <a className="item-list-link" href={trend.url}>{trend.name} -  {trend.tweet_volume && <span className="other-text">{trend.tweet_volume}</span>}</a>
+              <a className="item-list-link" href={trend.url}>
+                {index + 1} - {trend.name}
+              </a>
+              <span className="other-text">
+                {trend.tweet_volume === null
+                  ? "N/A"
+                  : ` Cantidad: ${trend.tweet_volume} tweets`}
+              </span>
             </li>
           );
         })}
       </ul>
     );
   };
+  const title = () => {
+    const final = objectCity.filter((item) => {
+      return item.woeid === woeid;
+    });
+    return final[0].country;
+  };
   return (
     <>
-    <Navbar />
+      <Navbar />
       <main className="main-trend">
         <section className="container-search">
           <select
             className="search-trending"
             onChange={(e) => setWoeid(e.target.value)}
           >
-            <option value="1">Alrededor del mundo</option>
             <option value="23424787">Colombia</option>
-            <option value="23424848">India</option>
-            <option value="2459115">New York,US</option>
-            <option value="2442047">Los Angeles,US</option>
-            <option value="2295411">Mumbai</option>
-            <option value="1105779">Sydney,AU</option>
+            <option value="1">Mundial</option>
+            <option value="23424782">Chile</option>
+            <option value="23424801">Ecuador</option>
+            <option value="23424747">Argentina</option>
           </select>
-          <FontAwesomeIcon
-            className="icon-location"
-            icon={faLocation}
-            onClick={handleLocation}
-          />
         </section>
         <section className="container">
-          <h1>Tendencias</h1>
+          <h1>Tendencias de Twitter {title()}</h1>
           {listTrends()}
         </section>
       </main>

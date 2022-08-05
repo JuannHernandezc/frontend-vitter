@@ -16,6 +16,7 @@ export const Search = () => {
   const [tweet, setTweet] = useState([]);
   const [locations, setLocations] = useState({});
   const [isCreatedMap, setisCreatedMap] = useState(false);
+  const [isDisabledBtnMap, setIsDisabledBtnMap] = useState(true);
   useEffect(() => {
     if (auth.currentUser) {
       setUser(auth.currentUser);
@@ -60,11 +61,11 @@ export const Search = () => {
     const lonLat = cityData.map((data) => {
       const lat = parseFloat(data.lat);
       const lng = parseFloat(data.lng);
-      return ({
+      return {
         city: data.city,
         lat: lat,
-        lng: lng
-      });
+        lng: lng,
+      };
     });
 
     const emptyLocation = lessData.filter((item) => {
@@ -73,16 +74,13 @@ export const Search = () => {
 
     const location = emptyLocation.map((itemLocation) => {
       const citiesFinal = lonLat.filter((itemCities) => {
-        return itemLocation.locationDev === itemCities.city
-      })
+        return itemLocation.locationDev === itemCities.city;
+      });
       return citiesFinal;
     });
 
     const nicolas = location.flat(3);
     setLocations(nicolas);
-    console.log(nicolas);
-
-    // console.log(emptyLocation);
     return emptyLocation;
   };
 
@@ -94,8 +92,8 @@ export const Search = () => {
         },
       })
       .then((response) => {
+        console.log(response);
         const data = cleanData(response.data.statuses);
-        // console.log(data);
         setTweet(data);
       });
   };
@@ -107,6 +105,7 @@ export const Search = () => {
     }
     getSearch();
     setQ("");
+    setIsDisabledBtnMap(false);
   };
 
   const data = () => {
@@ -116,26 +115,25 @@ export const Search = () => {
           <h1 className="title-card">@{info.username}</h1>
           <p className="main-text-card">{info.text}</p>
           <p className="location-text-card">{info.location}</p>
-          <p>{index}</p>
           {/* <p>{info.date}</p> */}
         </div>
       );
     });
   };
 
+  const openPopUp = () => {
+    const popUp = document.getElementsByClassName('pop-up__heatmap');
+    popUp[0].style.bottom = '0%';
+  }
+
   const createHeatMap = () => {
     setisCreatedMap(true);
-  }
+    openPopUp();
+  };
   return (
     <>
+      <div className="pop-up__heatmap">{isCreatedMap ? <HeatMap data={locations} /> : null}</div>
       <Navbar />
-      {
-        isCreatedMap ? (
-          <HeatMap data={locations}/>
-        ) : (
-          <button onClick={createHeatMap}> Crear Mapa de Calor</button>
-        )
-      }
       <main className="main-container-search">
         <form onSubmit={processData}>
           <input
@@ -148,8 +146,22 @@ export const Search = () => {
             Buscar
           </button>
         </form>
+        <button
+          onClick={createHeatMap}
+          disabled={isDisabledBtnMap}
+          type="button"
+          className="btn-create-heatmap"
+        >
+          Crear Mapa de Calor
+        </button>
         <div className="container-cards">
-          {!tweet ? <h1>Esperando contenido</h1> : data()}
+          {tweet.length === 0 ? (
+            <div className="loading">
+              <h1>Recuerde Ingresar una o varias palabras en el buscador</h1>
+            </div>
+          ) : (
+            data()
+          )}
         </div>
       </main>
     </>
