@@ -1,0 +1,34 @@
+.container-admin {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 95vh;
+    background: url('https://res.cloudinary.com/danhzm8qb/image/upload/v1659847778/vitter/heatMap_a3r52t.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.671);
+    backdrop-filter: blur(.5rem);
+}
+
+.container-text .title-admin {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+}
+.second{
+    color: white;
+    font-size: 1.6rem;
+}

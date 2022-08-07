@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { auth } from "../helpers/firebase.js";
 import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocation } from "@fortawesome/free-solid-svg-icons";
+import { faClipboard, faCheck } from "@fortawesome/free-solid-svg-icons";
+import CopyToClipboard from "react-copy-to-clipboard";
 import "./styles/Trends.css";
 import axios from "axios";
 import { Navbar } from "./utils/Navbar.jsx";
@@ -34,6 +35,8 @@ export const Trends = () => {
   const [user, setUser] = useState(null);
   const [trends, setTrends] = useState([]);
   const [woeid, setWoeid] = useState("23424787");
+  const [country, setCountry] = useState('');
+  const [stateIcon, setStateIcon] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (auth.currentUser) {
@@ -52,7 +55,7 @@ export const Trends = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        setCountry(response.data[0].locations[0].name);
         setTrends(response.data[0].trends);
       })
       .catch((error) => console.log(error.message));
@@ -71,6 +74,21 @@ export const Trends = () => {
                   ? "N/A"
                   : ` Cantidad: ${trend.tweet_volume} tweets`}
               </span>
+              <CopyToClipboard
+                text={trend.name}
+                onCopy={() => {
+                  const element = document.getElementsByClassName("second-text");
+                  element[0].style.display = "flex";
+                  setStateIcon(true);
+                  window.scrollTo(0,0);
+                  setTimeout(() => {
+                    setStateIcon(false);
+                    element[0].style.display = "none";
+                  }, 2000);
+                }}
+              >
+                <FontAwesomeIcon className="icon-copy" icon={faClipboard} />
+              </CopyToClipboard>
             </li>
           );
         })}
@@ -78,10 +96,7 @@ export const Trends = () => {
     );
   };
   const title = () => {
-    const final = objectCity.filter((item) => {
-      return item.woeid === woeid;
-    });
-    return final[0].country;
+
   };
   return (
     <>
@@ -100,7 +115,13 @@ export const Trends = () => {
           </select>
         </section>
         <section className="container">
-          <h1>Tendencias de Twitter {title()}</h1>
+          <h1>Tendencias de Twitter {country}</h1>
+          <div>
+            <p className="second-text">
+              <FontAwesomeIcon className="icon-check" icon={faCheck} />
+              {stateIcon ? "Tendencia Copiada" : ""}
+            </p>
+          </div>
           {listTrends()}
         </section>
       </main>
