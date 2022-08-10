@@ -92,7 +92,6 @@ export const Search = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         const data = cleanData(response.data.statuses);
         setTweet(data);
       });

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { auth } from "../helpers/firebase.js";
+import { auth, db } from "../helpers/firebase.js";
 import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard, faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -8,42 +8,25 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import "./styles/Trends.css";
 import axios from "axios";
 import { Navbar } from "./utils/Navbar.jsx";
+import { doc, setDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const Trends = () => {
-  const objectCity = [
-    {
-      country: "Colombia",
-      woeid: "23424787",
-    },
-    {
-      country: "Mundial",
-      woeid: "1",
-    },
-    {
-      country: "Chile",
-      woeid: "23424782",
-    },
-    {
-      country: "Ecuador",
-      woeid: "23424801",
-    },
-    {
-      country: "Argentina",
-      woeid: "23424747",
-    },
-  ];
   const [user, setUser] = useState(null);
   const [trends, setTrends] = useState([]);
   const [woeid, setWoeid] = useState("23424787");
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState("");
   const [stateIcon, setStateIcon] = useState(false);
+  const [stateBtn, setStateBtn] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    if (auth.currentUser) {
-      setUser(auth.currentUser);
-    } else {
-      navigate("/");
-    }
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        navigate("/");
+      }
+    });
     getTrends();
   }, [navigate, woeid]);
 
@@ -59,6 +42,26 @@ export const Trends = () => {
         setTrends(response.data[0].trends);
       })
       .catch((error) => console.log(error.message));
+  };
+  const saveTrend = async () => {
+    const date = new Date();
+    const finalDate = `${date.toLocaleDateString(
+      "es-co"
+    )}-${date.toLocaleTimeString("es")}`;
+    const col = await doc(db, `${user.uid}`, `${finalDate.replaceAll('/','-')}`);
+    await setDoc(col, {
+      trend: trends,
+      date: finalDate.replaceAll('/','-')
+    });
+    const element = document.getElementsByClassName("second-text-btn");
+    element[0].style.display = "flex";
+    setStateBtn(true);
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      setStateBtn(false);
+      element[0].style.display = "none";
+    }, 2000);
+
   };
   const listTrends = () => {
     return (
@@ -77,10 +80,11 @@ export const Trends = () => {
               <CopyToClipboard
                 text={trend.name}
                 onCopy={() => {
-                  const element = document.getElementsByClassName("second-text");
+                  const element =
+                    document.getElementsByClassName("second-text");
                   element[0].style.display = "flex";
                   setStateIcon(true);
-                  window.scrollTo(0,0);
+                  window.scrollTo(0, 0);
                   setTimeout(() => {
                     setStateIcon(false);
                     element[0].style.display = "none";
@@ -94,9 +98,6 @@ export const Trends = () => {
         })}
       </ul>
     );
-  };
-  const title = () => {
-
   };
   return (
     <>
@@ -115,11 +116,18 @@ export const Trends = () => {
           </select>
         </section>
         <section className="container">
+          <button className="btn-save-trend" type="button" onClick={saveTrend}>
+            + añadir a mis tendencias
+          </button>
           <h1>Tendencias de Twitter {country}</h1>
           <div>
             <p className="second-text">
               <FontAwesomeIcon className="icon-check" icon={faCheck} />
               {stateIcon ? "Tendencia Copiada" : ""}
+            </p>
+            <p className="second-text-btn">
+              <FontAwesomeIcon className="icon-check" icon={faCheck} />
+              {stateBtn ? "Tendencia Agregada" : ""}
             </p>
           </div>
           {listTrends()}

@@ -1,0 +1,26 @@
+.container-trends-date{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container-trends-date .text-date{
+    font-size: 1.6rem;
+}
+.container-trend-date{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-trend-date p{
+    width: 50%;
+    margin: .5rem;
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 121, 202, 0.8);
+}

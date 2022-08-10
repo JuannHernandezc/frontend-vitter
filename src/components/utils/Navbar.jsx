@@ -35,6 +35,7 @@ export const Navbar = ({ firebaseUser }) => {
 
   const signOff = () => {
     signOut(auth).then(() => {
+      localStorage.removeItem('uid');
       navigate("/");
     });
   };
