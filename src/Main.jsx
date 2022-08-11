@@ -21,6 +21,7 @@ import { TermsAndConditions } from "./components/TermsAndConditions";
 import { Trends } from "./components/Trends";
 import { Search } from "./components/Search";
 import { TrendsDate } from "./components/TrendsDate";
+import { SearchUser } from "./components/SearchUser";
 
 export const Main = () => {
   const [firebaseUser, setFirebaseUser] = useState(false);
@@ -43,6 +44,7 @@ export const Main = () => {
         <Route path="/trends" element={<Trends />} />
         <Route path="/search" element={<Search />} />
         <Route path="/trends-date" element={<TrendsDate />} />
+        <Route path="/search-user" element={<SearchUser />} />
       </Routes>
     </BrowserRouter>
   ) : (

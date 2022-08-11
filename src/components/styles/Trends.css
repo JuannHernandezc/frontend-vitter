@@ -88,18 +88,25 @@
 .btn-save-trend{
     padding: 1rem 2rem;
     margin-bottom: 3rem;
-    background-color: #FFD972;
     border-radius: 1rem;
     border: none;
     font-size: 1.4rem;
     font-weight: bold;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
 }
+.btn-save-trend{
+    background-color: #FFD972;
+}
 .btn-save-trend:hover{
     transform: scale(1.1);
     transition: .7s;
     cursor: pointer;
 }
+
+.pop-up__graph{
+    width: 60%;
+}
+
 
 @media screen and (max-width: 425px) {
     .item-list-trend{

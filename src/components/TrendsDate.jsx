@@ -13,11 +13,18 @@ export const TrendsDate = () => {
   const [username, setUsername] = useState(null);
   const [info, setInfo] = useState([]);
 
+  const sortDate = (data) => {
+    const sortArray = data.sort((a,b) => {
+      return new Date((a.date.seconds * 1000) + (a.date.nanoseconds * 0.000001)).getTime() > new Date((b.date.seconds * 1000) + (b.date.nanoseconds * 0.000001)).getTime();
+    });
+    return sortArray;
+  }
   const getData = async (user) => {
     try {
       const data = await getDocs(collection(db, user.uid));
       const arrayData = data.docs.map((item) => item.data());
-      setInfo(arrayData);
+      const orderedArray = sortDate(arrayData);
+      setInfo(orderedArray);
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +45,8 @@ export const TrendsDate = () => {
       {
         info.map((item,index) => (
           <div key={index} className="container-trends-date">
-            <p className="text-date"> <b>Fecha y hora de guardado:</b> {item.date}</p>
+            <p className="text-date"> <b>Fecha: </b> {  new Date((item.date.seconds * 1000) + (item.date.nanoseconds * 0.000001)).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}) }</p>
+            <p className="text-date"> <b>Hora: </b> {  new Date((item.date.seconds * 1000) + (item.date.nanoseconds * 0.000001)).toLocaleTimeString() }</p>
             <h2>Tendencias Guardadas</h2>
             <div className="container-trend-date">{item.trend.map((tre,index) => <p key={index}>{index + 1 } - {tre.name}</p>)}</div>
           </div>

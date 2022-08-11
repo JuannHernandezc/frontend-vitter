@@ -10,6 +10,21 @@ import axios from "axios";
 import { Navbar } from "./utils/Navbar.jsx";
 import { doc, setDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import { v4 as uuidv4 } from "uuid";
+import {
+  CategoryScale,
+  Chart,
+  LinearScale,
+  PointElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+} from "chart.js";
+import "./styles/Search.css";
+import { Bar } from "react-chartjs-2";
+import { useMemo } from "react";
 
 export const Trends = () => {
   const [user, setUser] = useState(null);
@@ -45,13 +60,12 @@ export const Trends = () => {
   };
   const saveTrend = async () => {
     const date = new Date();
-    const finalDate = `${date.toLocaleDateString(
-      "es-co"
-    )}-${date.toLocaleTimeString("es")}`;
-    const col = await doc(db, `${user.uid}`, `${finalDate.replaceAll('/','-')}`);
+    const uid = uuidv4();
+    const col = await doc(db, `${user.uid}`, `${uid}`);
     await setDoc(col, {
       trend: trends,
-      date: finalDate.replaceAll('/','-')
+      date: date,
+      uid: uid,
     });
     const element = document.getElementsByClassName("second-text-btn");
     element[0].style.display = "flex";
@@ -61,7 +75,6 @@ export const Trends = () => {
       setStateBtn(false);
       element[0].style.display = "none";
     }, 2000);
-
   };
   const listTrends = () => {
     return (
@@ -99,6 +112,48 @@ export const Trends = () => {
       </ul>
     );
   };
+
+  const dataTrends = trends.filter((item) => item.tweet_volume !== null);
+  console.log(dataTrends);
+  const scores = dataTrends.map((item) => {
+    return item.tweet_volume;
+  });
+  const labels = dataTrends.map((item) => {
+    return item.name;
+  });
+
+  Chart.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+  );
+
+  const data = useMemo(() => {
+    return {
+      datasets: [
+        {
+          label: "Cantidad",
+          data: scores,
+          tension: 0.3,
+          borderColor: "rgb(75,192,192)",
+          backgroundColor: "rgba(75, 192, 192, 0.3)",
+          width: 200,
+        },
+      ],
+      labels,
+    };
+  }, [scores, labels]);
+
+  const options = {
+    responsive: true,
+    fill: true,
+  };
+
   return (
     <>
       <Navbar />
@@ -116,9 +171,15 @@ export const Trends = () => {
           </select>
         </section>
         <section className="container">
-          <button className="btn-save-trend" type="button" onClick={saveTrend}>
-            + añadir a mis tendencias
-          </button>
+          <div>
+            <button
+              className="btn-save-trend"
+              type="button"
+              onClick={saveTrend}
+            >
+              + añadir a mis tendencias
+            </button>
+          </div>
           <h1>Tendencias de Twitter {country}</h1>
           <div>
             <p className="second-text">
@@ -129,6 +190,9 @@ export const Trends = () => {
               <FontAwesomeIcon className="icon-check" icon={faCheck} />
               {stateBtn ? "Tendencia Agregada" : ""}
             </p>
+          </div>
+          <div className="pop-up__graph">
+            <Bar data={data} options={options} />
           </div>
           {listTrends()}
         </section>

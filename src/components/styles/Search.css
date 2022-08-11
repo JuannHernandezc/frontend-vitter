@@ -93,3 +93,20 @@
     z-index: 100;
     bottom: 125%;
 }
+.container-graph{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+.graph{
+    width: 50%;
+}
+.container-searchUser{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
