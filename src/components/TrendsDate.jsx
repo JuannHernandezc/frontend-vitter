@@ -15,7 +15,9 @@ export const TrendsDate = () => {
 
   const sortDate = (data) => {
     const sortArray = data.sort((a,b) => {
-      return new Date((a.date.seconds * 1000) + (a.date.nanoseconds * 0.000001)).getTime() > new Date((b.date.seconds * 1000) + (b.date.nanoseconds * 0.000001)).getTime();
+      const dateStart =  new Date((a.date.seconds * 1000) + (a.date.nanoseconds * 0.000001));
+      const dateEnd = new Date((b.date.seconds * 1000) + (b.date.nanoseconds * 0.000001));
+      return dateEnd - dateStart;
     });
     return sortArray;
   }

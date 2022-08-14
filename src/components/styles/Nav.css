@@ -84,7 +84,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    width: 20%;
+    width: 10%;
 }
 
 .container-logo-normal img{
@@ -95,7 +95,7 @@
     align-items: center;
     display: flex;
     justify-content: flex-end;
-    width: 80%;
+    width: 90%;
 }
 
 .container-items ul{
@@ -134,7 +134,7 @@
     bottom: 125%;
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 1050px) {
     .container-responsive {
         display: none;
     }
@@ -142,7 +142,7 @@
         display: none;
     }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1050px) {
     .nav-normal {
         display: none;
     }
