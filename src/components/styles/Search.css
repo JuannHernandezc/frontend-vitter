@@ -93,20 +93,42 @@
     z-index: 100;
     bottom: 125%;
 }
-.container-graph{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 5rem;
-}
-.graph{
-    width: 50%;
-}
 .container-searchUser{
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.card-user{
+    margin-bottom: 4rem;
+    padding: 2rem;
+    display: flex;
+    width: 50%;
+}
+.card-user .left {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-user .left img{
+    border-radius: 100%;
+}
+
+.right{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right p {
+    font-size: 1.6rem;
+}
+
+.right span {
+    font-weight: bold;
 }

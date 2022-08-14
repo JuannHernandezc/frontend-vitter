@@ -1,20 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Navbar } from "./utils/Navbar";
-import {
-  CategoryScale,
-  Chart,
-  LinearScale,
-  PointElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from "chart.js";
-import "./styles/Search.css";
-import { Bar } from "react-chartjs-2";
-import { useMemo } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -57,7 +43,6 @@ export const SearchUser = () => {
       })
       .then((response) => {
         setLastTweets(response.data);
-        // console.log(response.data);
       });
   };
 
@@ -68,39 +53,6 @@ export const SearchUser = () => {
     }
     getSearch();
     getSearchTweetsUser();
-  };
-
-  const scores = [userTweet.followers_count];
-  const labels = ["Seguidores"];
-  Chart.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-    Filler
-  );
-  const data = useMemo(() => {
-    return {
-      datasets: [
-        {
-          label: "Cantidad",
-          data: scores,
-          tension: 0.3,
-          borderColor: "rgb(75,192,192)",
-          backgroundColor: "rgba(75, 192, 192, 0.3)",
-          width: 200,
-        },
-      ],
-      labels,
-    };
-  }, [scores, labels]);
-
-  const options = {
-    responsive: true,
-    fill: true,
   };
 
   return (
@@ -122,10 +74,20 @@ export const SearchUser = () => {
           {lastTweets.length !== 0 ? (
             <>
               <div className="container-searchUser">
-                <h1>@{userTweet.screen_name}</h1>
-                <div className="container-graph">
-                  <div className="graph">
-                    <Bar data={data} options={options}/>
+                <div className="card-user">
+                  <div className="left">
+                    <h1>@{userTweet.screen_name}</h1>
+                    <img
+                      src={userTweet.profile_image_url.replace("_normal", "")}
+                      alt="Profile User"
+                      width="200"
+                      height="200"
+                    />
+                  </div>
+                  <div className="right">
+                    <p><span>Seguidores: </span>{userTweet.followers_count}</p>
+                    <p><span>Seguidos: </span>{userTweet.friends_count}</p>
+                    <p><span>Fecha Creación: </span>{new Date(userTweet.created_at).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
                   </div>
                 </div>
                 <div className="container-cards">
@@ -133,9 +95,8 @@ export const SearchUser = () => {
                     return (
                       <div key={index} className="card">
                         <h1 className="title-card">@{userTweet.screen_name}</h1>
-                        <p  className="main-text-card">
-                          {item.text}
-                        </p>
+                        <p className="main-text-card">{item.text}</p>
+                        <p className="second-text-card">{new Date(item.created_at).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
                       </div>
                     );
                   })}

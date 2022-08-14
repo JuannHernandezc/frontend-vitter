@@ -50,7 +50,7 @@ export const TrendsDate = () => {
             <p className="text-date"> <b>Fecha: </b> {  new Date((item.date.seconds * 1000) + (item.date.nanoseconds * 0.000001)).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}) }</p>
             <p className="text-date"> <b>Hora: </b> {  new Date((item.date.seconds * 1000) + (item.date.nanoseconds * 0.000001)).toLocaleTimeString() }</p>
             <h2>Tendencias Guardadas</h2>
-            <div className="container-trend-date">{item.trend.map((tre,index) => <p key={index}>{index + 1 } - {tre.name}</p>)}</div>
+            <div className="container-trend-date">{item.trend.map((tre,index) => <a href={tre.url}><p key={index}>{index + 1 } - {tre.name}</p></a>)}</div>
           </div>
         ))
       }
