@@ -132,3 +132,12 @@
 .right span {
     font-weight: bold;
 }
+
+@media screen and (max-width: 397px){
+    .btn-search-tweet{
+        font-size: 1.2rem;
+    }
+    .main-container-search form input{
+        width: 40%;
+    }
+}
