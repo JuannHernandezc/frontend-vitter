@@ -24,7 +24,7 @@ export const SearchUser = () => {
 
   const getSearch = () => {
     axios
-      .get("/api/user", {
+      .get("https://vitter-app-backend.herokuapp.com/api/user", {
         params: {
           screen_name,
         },
@@ -36,7 +36,7 @@ export const SearchUser = () => {
 
   const getSearchTweetsUser = () => {
     axios
-      .get("/api/user-tweets", {
+      .get("https://vitter-app-backend.herokuapp.com/api/user-tweets", {
         params: {
           screen_name,
         },

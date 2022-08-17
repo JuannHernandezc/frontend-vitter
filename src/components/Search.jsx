@@ -85,7 +85,7 @@ export const Search = () => {
 
   const getSearch = () => {
     axios
-      .get("/api/search", {
+      .get("https://vitter-app-backend.herokuapp.com/api/search", {
         params: {
           q,
         },

@@ -47,7 +47,7 @@ export const Trends = () => {
 
   const getTrends = () => {
     axios
-      .get("/api/trends", {
+      .get("https://vitter-app-backend.herokuapp.com/api/trends", {
         params: {
           woeid,
         },
