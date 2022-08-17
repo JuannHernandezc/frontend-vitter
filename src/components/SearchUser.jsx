@@ -87,7 +87,7 @@ export const SearchUser = () => {
                   <div className="right">
                     <p><span>Seguidores: </span>{userTweet.followers_count}</p>
                     <p><span>Seguidos: </span>{userTweet.friends_count}</p>
-                    <p><span>Fecha Creación: </span>{new Date(userTweet.created_at).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
+                    <p><span>Creación: </span>{new Date(userTweet.created_at).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
                   </div>
                 </div>
                 <div className="container-cards">

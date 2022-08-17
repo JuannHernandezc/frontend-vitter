@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { auth } from "../helpers/firebase.js";
 import { Navbar } from "./utils/Navbar.jsx";
 import { db } from "../helpers/firebase";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import "./styles/Admin.css";
 
 export const Admin = () => {
@@ -15,7 +15,6 @@ export const Admin = () => {
     const docReference = doc(db, "users", id);
     const docSnap = await getDoc(docReference);
     setUser(docSnap.data());
-    console.log(docSnap.data());
   };
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {

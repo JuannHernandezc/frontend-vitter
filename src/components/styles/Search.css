@@ -105,6 +105,7 @@
     padding: 2rem;
     display: flex;
     width: 50%;
+    text-align: center;
 }
 .card-user .left {
     display: flex;
@@ -123,6 +124,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: 2rem;
 }
 
 .right p {
@@ -139,5 +141,19 @@
     }
     .main-container-search form input{
         width: 40%;
+    }
+}
+
+@media screen and (max-width: 790px){
+    .card-user{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .card-user .left{
+        width: 100%;
+    }
+    .right{
+        width: 100%;
     }
 }

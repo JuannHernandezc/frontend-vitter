@@ -114,7 +114,6 @@ export const Trends = () => {
   };
 
   const dataTrends = trends.filter((item) => item.tweet_volume !== null);
-  console.log(dataTrends);
   const scores = dataTrends.map((item) => {
     return item.tweet_volume;
   });

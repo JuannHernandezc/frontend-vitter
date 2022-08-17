@@ -6,7 +6,6 @@ import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import "./styles/Search.css";
 import { cityData } from "../helpers/colombiaData";
-import { NavLink } from "react-router-dom";
 import { HeatMap } from "./HeatMap.jsx";
 
 export const Search = () => {
@@ -131,7 +130,7 @@ export const Search = () => {
   };
   return (
     <>
-      <div className="pop-up__heatmap">{isCreatedMap ? <HeatMap data={locations} /> : null}</div>
+      <div className="pop-up__heatmap">{isCreatedMap ?  <HeatMap data={locations} /> : null}</div>
       <Navbar />
       <main className="main-container-search">
         <form onSubmit={processData}>
