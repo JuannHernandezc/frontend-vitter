@@ -35,7 +35,7 @@ export const Admin = () => {
           </p>
           <p className="second">
             Recuerda que con Vitter puedes analizar tendencias - crear mapas de
-            calor y ver estadisticas de los mas grandiosos temas de Twitter
+            calor y ver estadísticas de los mas grandiosos temas de Twitter
           </p>
           <NavLink className="btn-heatmap" to="/search">
             Crear Mapa de calor

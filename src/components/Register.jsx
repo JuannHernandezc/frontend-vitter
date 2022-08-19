@@ -179,14 +179,14 @@ export const Register = () => {
           />
           <input
             type="number"
-            placeholder="Numero Celular"
+            placeholder="Número Celular"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
           />
           <span className="text-terms">
           Al hacer clic en "Registrarte", aceptas nuestros &nbsp;
             <NavLink className="form-item" to="/terms" target="_blank">
-               Terminos y condiciones
+               Términos y condiciones
             </NavLink>
           </span>
           <button className="btn-register" type="submit">

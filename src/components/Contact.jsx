@@ -82,7 +82,7 @@ export const Contact = () => {
           />
           <textarea 
             className="text-area" 
-            placeholder="Escribe como podemos ayudarte" 
+            placeholder="Escribe cómo podemos ayudarte" 
             onChange={(e) => setComment(e.target.value)}
             value={comment}
           >
