@@ -16,6 +16,7 @@ export const Search = () => {
   const [locations, setLocations] = useState({});
   const [isCreatedMap, setisCreatedMap] = useState(false);
   const [isDisabledBtnMap, setIsDisabledBtnMap] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     if (auth.currentUser) {
       setUser(auth.currentUser);
@@ -99,7 +100,12 @@ export const Search = () => {
   const processData = (e) => {
     e.preventDefault();
     if (!q.trim()) {
-      console.log("Esta vacio");
+      setError("El campo de busqueda no puede estar vacio");
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+      window.scrollTo(0, 0);
+      return;
     }
     getSearch();
     setQ("");
@@ -113,7 +119,7 @@ export const Search = () => {
           <h1 className="title-card">@{info.username}</h1>
           <p className="main-text-card">{info.text}</p>
           <p className="location-text-card">{info.location}</p>
-          {/* <p>{info.date}</p> */}
+          <p>{new Date(info.date).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
         </div>
       );
     });
@@ -133,6 +139,7 @@ export const Search = () => {
       <div className="pop-up__heatmap">{isCreatedMap ?  <HeatMap data={locations} /> : null}</div>
       <Navbar />
       <main className="main-container-search">
+      {error && <p className="error">{error}</p>}
         <form onSubmit={processData}>
           <input
             type="text"

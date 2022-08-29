@@ -32,6 +32,21 @@
 .btn-search-tweet{
     background-color: mediumseagreen;
 }
+
+.error{
+    position: relative;
+    background-color: rgb(209, 97, 97);
+    border-radius: 2rem;
+    color: white;
+    display: block;
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 1rem;
+    text-align: center;
+    width: 60%;
+    margin-bottom: 5rem;
+}
+
 .btn-create-heatmap{
     background-color: coral;
     margin-bottom: 2rem;

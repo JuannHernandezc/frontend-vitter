@@ -8,7 +8,7 @@ import { useState, useCallback } from "react";
 
 //Imports FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 //Imports React Router DOM
 import { NavLink, useNavigate } from "react-router-dom";
@@ -138,7 +138,7 @@ export const Register = () => {
         <div className="container-close">
           <FontAwesomeIcon
             className="icon-close"
-            icon={faClose}
+            icon={faXmark}
             onClick={closedPopUp}
           />
         </div>

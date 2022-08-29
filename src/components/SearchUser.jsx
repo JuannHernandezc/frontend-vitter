@@ -5,12 +5,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { auth } from "../helpers/firebase.js";
+import "./styles/Search.css";
 
 export const SearchUser = () => {
   const [screen_name, setScreen_name] = useState("");
   const [userTweet, setUserTweet] = useState({});
   const [lastTweets, setLastTweets] = useState([]);
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -31,6 +33,9 @@ export const SearchUser = () => {
       })
       .then((response) => {
         setUserTweet(response.data);
+      })
+      .catch((error) => {
+        setError("Ingrese un Usuario que se encuentre registrado en Twitter");
       });
   };
 
@@ -43,13 +48,27 @@ export const SearchUser = () => {
       })
       .then((response) => {
         setLastTweets(response.data);
+      })
+      .catch((error) => {
+        setError(
+          "Ingrese un usuario valido o revise como se encuentra escrito. "
+        );
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+        window.scrollTo(0, 0);
       });
   };
 
   const processData = (e) => {
     e.preventDefault();
     if (!screen_name.trim()) {
-      return console.log("Esta Vacio");
+      setError("El campo de busqueda no puede estar vacio");
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+      window.scrollTo(0, 0);
+      return;
     }
     getSearch();
     getSearchTweetsUser();
@@ -59,6 +78,7 @@ export const SearchUser = () => {
     <>
       <Navbar />
       <main className="main-container-search">
+        {error && <p className="error">{error}</p>}
         <form onSubmit={processData}>
           <input
             type="text"
@@ -85,9 +105,26 @@ export const SearchUser = () => {
                     />
                   </div>
                   <div className="right">
-                    <p><span>Seguidores: </span>{userTweet.followers_count}</p>
-                    <p><span>Seguidos: </span>{userTweet.friends_count}</p>
-                    <p><span>Creación: </span>{new Date(userTweet.created_at).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
+                    <p>
+                      <span>Seguidores: </span>
+                      {userTweet.followers_count}
+                    </p>
+                    <p>
+                      <span>Seguidos: </span>
+                      {userTweet.friends_count}
+                    </p>
+                    <p>
+                      <span>Creación: </span>
+                      {new Date(userTweet.created_at).toLocaleDateString(
+                        "es-CO",
+                        {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }
+                      )}
+                    </p>
                   </div>
                 </div>
                 <div className="container-cards">
@@ -96,7 +133,17 @@ export const SearchUser = () => {
                       <div key={index} className="card">
                         <h1 className="title-card">@{userTweet.screen_name}</h1>
                         <p className="main-text-card">{item.text}</p>
-                        <p className="second-text-card">{new Date(item.created_at).toLocaleDateString('es-CO', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
+                        <p className="second-text-card">
+                          {new Date(item.created_at).toLocaleDateString(
+                            "es-CO",
+                            {
+                              weekday: "long",
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}
+                        </p>
                       </div>
                     );
                   })}
