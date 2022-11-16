@@ -3,7 +3,12 @@ import "./styles/Register.css";
 
 //Imports FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightToBracket, faClose } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRightToBracket,
+  faClose,
+  faEye,
+  faEyeSlash
+} from "@fortawesome/free-solid-svg-icons";
 
 //Imports React Router DOM
 import { NavLink, useNavigate } from "react-router-dom";
@@ -19,6 +24,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [prueba, setPrueba] = useState(false);
   const navigate = useNavigate();
 
   const login = useCallback(async () => {
@@ -62,13 +68,18 @@ export const Login = () => {
     login();
   };
   const closedPopUp = () => {
-    const popUp = document.getElementsByClassName('pop-up__login');
-    popUp[0].style.bottom = '125%';
-  }
+    const popUp = document.getElementsByClassName("pop-up__login");
+    popUp[0].style.bottom = "125%";
+  };
 
   const openPopUpContact = () => {
-    const popUp = document.getElementsByClassName('pop-up__reset');
-    popUp[0].style.bottom = '0%';
+    const popUp = document.getElementsByClassName("pop-up__reset");
+    popUp[0].style.bottom = "0%";
+  };
+
+
+  const enableInput = () => {
+    setPrueba(!prueba);
   }
 
   return (
@@ -93,16 +104,28 @@ export const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-          <NavLink className="form-item" onClick={() => {
-            openPopUpContact();
-            closedPopUp();
-          }} to="/">
+          <span className="container-password">
+            <input
+              type={prueba ? "text" : "password"}
+              placeholder="Contraseña"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            {prueba ? (
+              <FontAwesomeIcon className="icon" onClick={enableInput} icon={faEye} />
+
+            ): (
+              <FontAwesomeIcon className="icon" onClick={enableInput} icon={faEyeSlash} />
+            )}
+          </span>
+          <NavLink
+            className="form-item"
+            onClick={() => {
+              openPopUpContact();
+              closedPopUp();
+            }}
+            to="/"
+          >
             ¿Olvidaste tu contraseña?
           </NavLink>
           <button className="btn-login">Iniciar Sesión</button>

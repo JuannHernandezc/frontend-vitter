@@ -136,14 +136,12 @@ export const Trends = () => {
     return {
       datasets: [
         {
-          label: 'Cantidad de Tweets por tendencia',
+          label: "Cantidad de Tweets por tendencia",
           data: scores,
           tension: 0.3,
-          backgroundColor:"rgba(75, 192, 192, 0.4)",
-          borderColor: [
-            'rgb(75, 192, 192)',
-          ],
-          borderWidth: 2
+          backgroundColor: "rgba(75, 192, 192, 0.4)",
+          borderColor: ["rgb(75, 192, 192)"],
+          borderWidth: 2,
         },
       ],
       labels,

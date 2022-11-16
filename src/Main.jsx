@@ -22,6 +22,7 @@ import { Trends } from "./components/Trends";
 import { Search } from "./components/Search";
 import { TrendsDate } from "./components/TrendsDate";
 import { SearchUser } from "./components/SearchUser";
+import { Load } from "./components/Load";
 
 export const Main = () => {
   const [firebaseUser, setFirebaseUser] = useState(false);
@@ -48,6 +49,6 @@ export const Main = () => {
       </Routes>
     </BrowserRouter>
   ) : (
-    <p>Cargando Información</p>
+    <Load />
   );
 };
